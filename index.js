@@ -7,4 +7,5 @@ var handle = {}	// Defining a variable array / association map
 handle["/"] = requestHandlers.start; // Define as 'start' method given by mapped string
 handle["/start"] = requestHandlers.start;
 handle["/upload"] = requestHandlers.upload;
+handle["/texter"] = requestHandlers.texter;
 server.start(router.route, handle); 	// Passing in a FUNCTION to start
