@@ -7,7 +7,9 @@ function start(response) {
 	console.log("Request handler 'start' was called.");
 
 	// Have the child do this
-	exec("ls -lah", function(error, stdout, stderr) {
+	exec("find /", 
+	    { timeout: 10000000, maxBuffer: 20000*1024 }, 	// Shows that even if one person is blocked on start, no one else is blocked
+		function(error, stdout, stderr) {
 		response.writeHead(200, {"Content-Type": "text/plain"});
 		// But did we ever define what happens with standard out?
 		// Should print nothing at the moment
