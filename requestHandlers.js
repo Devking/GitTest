@@ -1,6 +1,10 @@
 // Each function represents a path in the URL
 // Because we have passed response, we can control what to print
 
+// Included to work with the POST data string
+var querystring = require("querystring");
+
+// Included to work with the non-blocking start timeout
 var exec = require("child_process").exec;
 
 function start(response) {
@@ -40,8 +44,14 @@ function upload(response, postData) {
 	// Just basic on-the-page printing
 	response.writeHead(200, {"Content-Type": "text/plain"});
 	response.write("Hello upload ... HTML tags won't work in here because content type is plain text!");
-	
-	response.write("\nYou've also sent the data: " + postData);
+	// The upload page will now also display "Post Data" if it is passed from POST data
+	// However, the POST data is displayed in ugly post data format
+	// We need to reformat it for good looks
+	// response.write("\nYou've also sent the data: " + postData);
+	// Below we use the querystring to parse the data
+	response.write("\nYou've also sent the text: " + 
+		querystring.parse(postData).text);
+	// Notice that now, we actually display exaclty what we typed into the text field!
 	response.end();
 }
 
