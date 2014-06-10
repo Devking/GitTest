@@ -5,6 +5,15 @@ var exec = require("child_process").exec;
 
 function start(response) {
 	console.log("Request handler 'start' was called.");
+
+	// Have the child do this
+	exec("ls -lah", function(error, stdout, stderr) {
+		response.writeHead(200, {"Content-Type": "text/plain"});
+		// But did we ever define what happens with standard out?
+		// Should print nothing at the moment
+		response.write(stdout);
+		response.end();
+	});
 }
 
 function upload(response) {
