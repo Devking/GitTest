@@ -1,8 +1,8 @@
-function route(handle, pathname, response) { 	// Passing a association map and a variable
+function route(handle, pathname, response, postData) { 	// Passing a association map and a variable
 	console.log("About to route a request for " + pathname);
 
 	if (typeof handle[pathname] === 'function') { 	// Check association map if a function exists
-		handle[pathname] (response); 	// If that function exists, in this case start or upload, then execute that function
+		handle[pathname] (response, postData); 	// If that function exists, in this case start or upload, then execute that function
 	} else {
 		// If the function does not exist through the mapping, based on the URL, then we get a 404 page error
 		console.log ("No request handler found for " + pathname);
