@@ -1,9 +1,18 @@
-function start() {
+// Each function represents a path in the URL
+// Because we have passed response, we can control what to print
+
+var exec = require("child_process").exec;
+
+function start(response) {
 	console.log("Request handler 'start' was called.");
 }
 
-function upload() {
+function upload(response) {
 	console.log("Request handler 'upload' was called.");
+	// Just basic on-the-page printing
+	response.writeHead(200, {"Content-Type": "text/plain"});
+	response.write("Hello upload ... HTML tags won't work in here!");
+	response.end();
 }
 
 exports.start = start;
