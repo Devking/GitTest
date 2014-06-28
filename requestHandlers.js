@@ -11,7 +11,7 @@ function start(response) {
 	console.log("Request handler 'start' was called.");
 
 	// Have the child do this
-	exec("find /", 
+	/*exec("find /", 
 	    { timeout: 10000000, maxBuffer: 20000*1024 }, 	// Shows that even if one person is blocked on start, no one else is blocked
 		function(error, stdout, stderr) {
 		response.writeHead(200, {"Content-Type": "text/plain"});
@@ -19,7 +19,10 @@ function start(response) {
 		// Should print nothing at the moment
 		response.write(stdout);
 		response.end();
-	});
+	});*/
+	response.writeHead(200, {"Content-Type": "text/html"});
+	response.write('<a href="/texter">To The Text Field Code</a>');
+	response.end();
 }
 
 // Create a new function/page that works with textfields
